@@ -1,8 +1,8 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import AppController from './app.controller';
+import AppService from './app.service';
 
 @Module({
   imports: [
@@ -22,6 +22,4 @@ import { AppService } from './app.service';
     },
   ],
 })
-export class AppModule {
-
-}
+export default class AppModule {}
