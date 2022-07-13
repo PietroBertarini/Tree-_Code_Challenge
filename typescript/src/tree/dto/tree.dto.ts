@@ -1,7 +1,8 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, IsOptional } from 'class-validator';
 
 export default class CreateTreeDto {
   @IsNumber()
+  @IsOptional()
   parent?: number;
 
   @IsString()

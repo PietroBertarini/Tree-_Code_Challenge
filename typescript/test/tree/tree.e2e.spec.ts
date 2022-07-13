@@ -8,14 +8,18 @@ import { initialFakeDb } from '../../src/tree/entities/tree.mock';
 
 describe('ApiController', () => {
   let app: INestApplication;
-
+  beforeEach(() => {
+    localStorage.setItem('treeFromDb', JSON.stringify(initialFakeDb));
+  });
+  afterEach(async () => {
+    localStorage.setItem('treeFromDb', JSON.stringify(initialFakeDb));
+  });
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [TreeModule],
     }).compile();
     app = moduleRef.createNestApplication();
     await app.init();
-    localStorage.setItem('treeFromDb', JSON.stringify(initialFakeDb));
   });
   describe('GET /tree/', () => {
     const exec = () => {
@@ -30,11 +34,37 @@ describe('ApiController', () => {
   });
 
   describe('POST /tree/', () => {
+    let label;
+    let parent;
     const exec = () => {
-      return request(app.getHttpServer()).post('/tree/');
+      return request(app.getHttpServer())
+        .post('/tree/')
+        .send({ label, parent });
     };
 
     it('Should return 400, no body', async () => {
+      const res = await exec();
+      expect(res.status).toBe(400);
+      expect(res.body.error).toBe('Bad Request');
+    });
+    it('Should return 201', async () => {
+      label = 'test';
+      const res = await exec();
+      expect(res.status).toBe(201);
+      expect(res.text).toBe(`Tree: {id:10,label:test}`);
+    });
+
+    it('Should return 201, with parent', async () => {
+      label = 'test';
+      parent = 1;
+      const res = await exec();
+      expect(res.status).toBe(201);
+      expect(res.text).toBe(`Tree: {id:10,label:test}`);
+    });
+
+    it('Should return 201, wrong parent format', async () => {
+      label = 'test';
+      parent = 'test';
       const res = await exec();
       expect(res.status).toBe(400);
       expect(res.body.error).toBe('Bad Request');
