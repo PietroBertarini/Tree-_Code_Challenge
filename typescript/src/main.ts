@@ -5,6 +5,7 @@ import AppModule from './app.module';
 async function bootstrap() {
   const logger = new Logger('bootstrap');
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
   await app.listen(process.env.PORT || 3001, () =>
     logger.log(`App listening on port ${process.env.PORT || 3001}!`),
   );
