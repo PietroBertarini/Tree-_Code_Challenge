@@ -2,6 +2,7 @@ import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import ApiModule from '../../src/api/api.module';
+import expectedResponseTree from './nodeData.mock';
 
 describe('ApiController', () => {
   let app: INestApplication;
@@ -21,8 +22,7 @@ describe('ApiController', () => {
     it('Should return 200 and Hello', async () => {
       const res = await exec();
       expect(res.status).toBe(200);
-      expect(res.body).toStrictEqual({});
-      expect(res.text).toBe('Hello GET /tree/');
+      expect(res.text).toStrictEqual(JSON.stringify(expectedResponseTree));
     });
   });
 
