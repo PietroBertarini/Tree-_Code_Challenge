@@ -5,3 +5,5 @@
 typescript/dist/
 
 .DS_Store
+
+typescript/coverage/
