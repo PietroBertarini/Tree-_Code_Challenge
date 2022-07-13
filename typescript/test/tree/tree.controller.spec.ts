@@ -4,6 +4,12 @@ import TreeController from '../../src/tree/tree.controller';
 import TreeService from '../../src/tree/tree.service';
 import expectedResponseTree from './tree.mock';
 
+const mockTreeRepository = () => ({
+  get: jest.fn(),
+  createTree: jest.fn(),
+  gerById: jest.fn(),
+});
+
 describe('AppController', () => {
   let apiController: TreeController;
 
@@ -20,8 +26,13 @@ describe('AppController', () => {
       const response = await apiController.getTree();
       expect(response).toStrictEqual(expectedResponseTree);
     });
-    it('should return POST /tree/"', () => {
-      expect(apiController.postTree()).toBe('Hello POST /tree/');
+    it('should create a new tree with a parent', () => {
+      const response = apiController.postTree({ label: 'test', parent: 1 });
+      expect(response).toBe(`Tree: {id:10,label:test}`);
+    });
+    it('should a new tree with without a parent', () => {
+      const response = apiController.postTree({ label: 'test' });
+      expect(response).toBe(`Tree: {id:10,label:test}`);
     });
   });
 });

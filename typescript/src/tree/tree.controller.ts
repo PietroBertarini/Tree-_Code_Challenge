@@ -1,6 +1,7 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import TreeService from './tree.service';
 import { ITreeResponseFormat } from './entities/tree.interfaces';
+import CreateTreeDto from './dto/tree.dto';
 
 @Controller()
 export default class TreeController {
@@ -12,7 +13,7 @@ export default class TreeController {
   }
 
   @Post('/tree/')
-  postTree(): string {
-    return this.appService.postTree();
+  postTree(@Body() body: CreateTreeDto): Promise<string> {
+    return this.appService.createTree(body);
   }
 }
