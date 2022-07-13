@@ -6,7 +6,7 @@ import {
   TreeParent,
   Tree,
 } from 'typeorm';
-import { IResponseNode } from './nodeData.interfaces';
+import { INodeResponseFormat } from './nodeData.interfaces';
 
 @Entity()
 @Tree('materialized-path')
@@ -24,7 +24,7 @@ export default class NodeData {
   parent?: NodeData[];
 }
 
-const getResponseFormat = (item: NodeData): IResponseNode => {
+const getResponseFormat = (item: NodeData): INodeResponseFormat => {
   return {
     [item.id]: {
       label: item.label,

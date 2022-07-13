@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import mockTree from './entities/nodeData.mock';
-import { IResponseNode } from './entities/nodeData.interfaces';
-import getResponseFormat from './utils/nodeData.utils';
+import { INodeResponseFormat } from './entities/nodeData.interfaces';
+import getNodeResponseFormat from './utils/nodeData.utils';
 
 @Injectable()
 export default class ApiService {
-  getTree = (): IResponseNode => {
-    return getResponseFormat(mockTree);
+  getTree = (): INodeResponseFormat => {
+    return getNodeResponseFormat(mockTree);
   };
 
   postTree = (): string => {

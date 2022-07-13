@@ -1,14 +1,16 @@
 import NodeData from '../entities/nodeData.entity';
-import { IResponseNode } from '../entities/nodeData.interfaces';
+import { INodeResponseFormat } from '../entities/nodeData.interfaces';
 
-const getResponseFormat = (item: NodeData): IResponseNode => {
+const getNodeResponseFormat = (item: NodeData): INodeResponseFormat => {
   return {
     [item.id]: {
       label: item.label,
       children: item.children
-        ? item.children.map((itemResponse) => getResponseFormat(itemResponse))
+        ? item.children.map((itemResponse) =>
+            getNodeResponseFormat(itemResponse),
+          )
         : [],
     },
   };
 };
-export default getResponseFormat;
+export default getNodeResponseFormat;

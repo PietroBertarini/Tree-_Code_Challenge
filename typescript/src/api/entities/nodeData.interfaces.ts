@@ -1,6 +1,6 @@
-export interface IResponseNode {
+export interface INodeResponseFormat {
   [id: number]: {
     label: string;
-    children: IResponseNode[];
+    children: INodeResponseFormat[];
   };
 }

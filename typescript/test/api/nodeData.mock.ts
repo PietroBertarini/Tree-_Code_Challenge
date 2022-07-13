@@ -1,6 +1,6 @@
-import { IResponseNode } from '../../src/api/entities/nodeData.interfaces';
+import { INodeResponseFormat } from '../../src/api/entities/nodeData.interfaces';
 
-const expectedResponseTree: IResponseNode = {
+const expectedResponseTree: INodeResponseFormat = {
   1: {
     label: 'root',
     children: [
