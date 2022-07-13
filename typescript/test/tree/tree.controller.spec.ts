@@ -11,7 +11,6 @@ describe('AppController', () => {
       controllers: [TreeController],
       providers: [TreeService],
     }).compile();
-
     apiController = app.get<TreeController>(TreeController);
   });
 
