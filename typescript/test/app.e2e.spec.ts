@@ -19,11 +19,11 @@ describe('AppController', () => {
     return request(app.getHttpServer()).get('/');
   };
 
-  it('Should return 200 and Hello World', async () => {
+  it('Should return 200 and Server running', async () => {
     const res = await exec();
     expect(res.status).toBe(200);
     expect(res.body).toStrictEqual({});
-    expect(res.text).toBe('Hello World!');
+    expect(res.text).toBe('Server running!');
   });
 
   afterAll(async () => {
