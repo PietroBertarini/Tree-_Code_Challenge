@@ -1,16 +1,11 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
-import { ConfigModule } from '@nestjs/config';
 import TreeController from './tree.controller';
 import TreeService from './tree.service';
+import TreeRepository from './tree.repository';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV}`,
-    }),
-  ],
+  imports: [TreeRepository],
   controllers: [TreeController],
   providers: [
     TreeService,

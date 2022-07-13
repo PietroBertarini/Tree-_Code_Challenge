@@ -19,7 +19,7 @@ describe('ApiController', () => {
       return request(app.getHttpServer()).get('/tree/');
     };
 
-    it('Should return 200 and Hello', async () => {
+    it('Should return 200 and the response tree', async () => {
       const res = await exec();
       expect(res.status).toBe(200);
       expect(res.text).toStrictEqual(JSON.stringify(expectedResponseTree));
