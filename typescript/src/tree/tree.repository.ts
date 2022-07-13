@@ -38,11 +38,16 @@ export default class TreeRepository {
           ? getTreeFromDb.find((tree) => tree.id === createTreeDto.parent)
           : undefined;
 
-      return Promise.resolve({
+      const tree = {
         id: 10,
         parent: parentTree,
         label: createTreeDto.label,
-      } as Tree);
+      } as Tree;
+      getTreeFromDb.push(tree);
+      // this part is simulating the DB
+      localStorage.setItem('treeFromDb', JSON.stringify(getTreeFromDb));
+
+      return Promise.resolve(tree);
     } catch (error) {
       throw new InternalServerErrorException();
     }

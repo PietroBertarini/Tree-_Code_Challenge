@@ -26,12 +26,15 @@ describe('AppController', () => {
       const response = await apiController.getTree();
       expect(response).toStrictEqual(expectedResponseTree);
     });
-    it('should create a new tree with a parent', () => {
-      const response = apiController.postTree({ label: 'test', parent: 1 });
+    it('should create a new tree with a parent', async () => {
+      const response = await apiController.postTree({
+        label: 'test',
+        parent: 1,
+      });
       expect(response).toBe(`Tree: {id:10,label:test}`);
     });
-    it('should a new tree with without a parent', () => {
-      const response = apiController.postTree({ label: 'test' });
+    it('should a new tree with without a parent', async () => {
+      const response = await apiController.postTree({ label: 'test' });
       expect(response).toBe(`Tree: {id:10,label:test}`);
     });
   });

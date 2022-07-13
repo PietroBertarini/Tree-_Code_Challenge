@@ -3,6 +3,8 @@ import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import TreeModule from '../../src/tree/tree.module';
 import expectedResponseTree from './tree.mock';
+import localStorage from '../../store';
+import { initialFakeDb } from '../../src/tree/entities/tree.mock';
 
 describe('ApiController', () => {
   let app: INestApplication;
@@ -13,6 +15,7 @@ describe('ApiController', () => {
     }).compile();
     app = moduleRef.createNestApplication();
     await app.init();
+    localStorage.setItem('treeFromDb', JSON.stringify(initialFakeDb));
   });
   describe('GET /tree/', () => {
     const exec = () => {
@@ -31,11 +34,10 @@ describe('ApiController', () => {
       return request(app.getHttpServer()).post('/tree/');
     };
 
-    it('Should return 201 and Hello post', async () => {
+    it('Should return 400, no body', async () => {
       const res = await exec();
-      expect(res.status).toBe(201);
-      expect(res.body).toStrictEqual({});
-      expect(res.text).toBe('Hello POST /tree/');
+      expect(res.status).toBe(400);
+      expect(res.body.error).toBe('Bad Request');
     });
   });
 
