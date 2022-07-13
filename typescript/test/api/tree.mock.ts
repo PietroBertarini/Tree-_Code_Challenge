@@ -1,6 +1,6 @@
-import { INodeResponseFormat } from '../../src/api/entities/nodeData.interfaces';
+import { ITreeResponseFormat } from '../../src/tree/entities/tree.interfaces';
 
-const expectedResponseTree: INodeResponseFormat = {
+const expectedMockTreeResponse: ITreeResponseFormat = {
   1: {
     label: 'root',
     children: [
@@ -24,4 +24,4 @@ const expectedResponseTree: INodeResponseFormat = {
   },
 };
 
-export default expectedResponseTree;
+export default expectedMockTreeResponse;

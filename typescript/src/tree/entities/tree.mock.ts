@@ -1,6 +1,6 @@
-import NodeData from './nodeData.entity';
+import Tree from './tree.entity';
 
-const treeMock: NodeData = {
+const treeMock: Tree = {
   id: 1,
   label: 'root',
   children: [

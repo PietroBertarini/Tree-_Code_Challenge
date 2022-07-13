@@ -3,7 +3,7 @@ import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import AppController from './app.controller';
 import AppService from './app.service';
-import ApiModule from './api/api.module';
+import TreeModule from './tree/tree.module';
 
 @Module({
   imports: [
@@ -11,7 +11,7 @@ import ApiModule from './api/api.module';
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    ApiModule,
+    TreeModule,
   ],
   controllers: [AppController],
   providers: [

@@ -1,8 +1,8 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
-import ApiController from './api.controller';
-import ApiService from './api.service';
+import TreeController from './tree.controller';
+import TreeService from './tree.service';
 
 @Module({
   imports: [
@@ -11,9 +11,9 @@ import ApiService from './api.service';
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
   ],
-  controllers: [ApiController],
+  controllers: [TreeController],
   providers: [
-    ApiService,
+    TreeService,
     {
       provide: APP_PIPE,
       useValue: new ValidationPipe({
@@ -22,4 +22,4 @@ import ApiService from './api.service';
     },
   ],
 })
-export default class ApiModule {}
+export default class TreeModule {}

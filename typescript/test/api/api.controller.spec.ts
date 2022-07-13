@@ -1,18 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import ApiController from '../../src/api/api.controller';
-import ApiService from '../../src/api/api.service';
-import expectedResponseTree from './nodeData.mock';
+import TreeController from '../../src/tree/tree.controller';
+import TreeService from '../../src/tree/tree.service';
+import expectedResponseTree from './tree.mock';
 
 describe('AppController', () => {
-  let apiController: ApiController;
+  let apiController: TreeController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [ApiController],
-      providers: [ApiService],
+      controllers: [TreeController],
+      providers: [TreeService],
     }).compile();
 
-    apiController = app.get<ApiController>(ApiController);
+    apiController = app.get<TreeController>(TreeController);
   });
 
   describe('Tree route', () => {

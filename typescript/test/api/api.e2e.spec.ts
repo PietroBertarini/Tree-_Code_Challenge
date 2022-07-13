@@ -1,22 +1,22 @@
 import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
-import ApiModule from '../../src/api/api.module';
-import expectedResponseTree from './nodeData.mock';
+import TreeModule from '../../src/tree/tree.module';
+import expectedResponseTree from './tree.mock';
 
 describe('ApiController', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [ApiModule],
+      imports: [TreeModule],
     }).compile();
     app = moduleRef.createNestApplication();
     await app.init();
   });
   describe('GET /tree/', () => {
     const exec = () => {
-      return request(app.getHttpServer()).get('/api/tree/');
+      return request(app.getHttpServer()).get('/tree/');
     };
 
     it('Should return 200 and Hello', async () => {
@@ -28,7 +28,7 @@ describe('ApiController', () => {
 
   describe('POST /tree/', () => {
     const exec = () => {
-      return request(app.getHttpServer()).post('/api/tree/');
+      return request(app.getHttpServer()).post('/tree/');
     };
 
     it('Should return 201 and Hello post', async () => {
