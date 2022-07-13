@@ -7,7 +7,7 @@ export default class TreeController {
   constructor(private readonly appService: TreeService) {}
 
   @Get('/tree/')
-  getTree(): ITreeResponseFormat {
+  getTree(): ITreeResponseFormat[] {
     return this.appService.getTree();
   }
 

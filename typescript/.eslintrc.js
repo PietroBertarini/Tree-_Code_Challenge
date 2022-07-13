@@ -33,6 +33,7 @@ module.exports = {
       }
     ],
     'no-useless-constructor': 'off',
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"]
   },
   settings: {
     "import/resolver": {

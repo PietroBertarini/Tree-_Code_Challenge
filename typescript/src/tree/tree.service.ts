@@ -1,12 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { treeMock } from './entities/tree.mock';
 import { ITreeResponseFormat } from './entities/tree.interfaces';
-import { getTreeResponseFormat } from './utils/tree.utils';
+import { getTreeFormat, getTreeResponseFormat } from './utils/tree.utils';
+import Tree from './entities/tree.entity';
+
+import localStorage from '../../store';
 
 @Injectable()
 export default class TreeService {
-  getTree = (): ITreeResponseFormat => {
-    return getTreeResponseFormat(treeMock);
+  getTree = (): ITreeResponseFormat[] => {
+    const getTreeFromDb = JSON.parse(
+      localStorage.getItem('treeFromDb'),
+    ) as Tree[];
+    const tree = getTreeFormat(getTreeFromDb);
+    return getTreeResponseFormat(tree);
   };
 
   postTree = (): string => {
