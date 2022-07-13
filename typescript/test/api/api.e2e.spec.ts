@@ -16,7 +16,7 @@ describe('ApiController', () => {
   });
   describe('GET /tree/', () => {
     const exec = () => {
-      return request(app.getHttpServer()).get('/tree/');
+      return request(app.getHttpServer()).get('/api/tree/');
     };
 
     it('Should return 200 and Hello', async () => {
@@ -28,7 +28,7 @@ describe('ApiController', () => {
 
   describe('POST /tree/', () => {
     const exec = () => {
-      return request(app.getHttpServer()).post('/tree/');
+      return request(app.getHttpServer()).post('/api/tree/');
     };
 
     it('Should return 201 and Hello post', async () => {

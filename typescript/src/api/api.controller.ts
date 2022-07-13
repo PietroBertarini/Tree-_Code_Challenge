@@ -6,12 +6,12 @@ import { INodeResponseFormat } from './entities/nodeData.interfaces';
 export default class ApiController {
   constructor(private readonly appService: ApiService) {}
 
-  @Get('/tree/')
+  @Get('/api/tree/')
   getTree(): INodeResponseFormat {
     return this.appService.getTree();
   }
 
-  @Post('/tree/')
+  @Post('/api/tree/')
   postTree(): string {
     return this.appService.postTree();
   }
