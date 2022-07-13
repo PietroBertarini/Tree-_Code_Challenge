@@ -1,14 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TreeRepository } from 'typeorm';
 import TreeController from '../../src/tree/tree.controller';
 import TreeService from '../../src/tree/tree.service';
 import expectedResponseTree from './tree.mock';
-
-const mockTreeRepository = () => ({
-  get: jest.fn(),
-  createTree: jest.fn(),
-  gerById: jest.fn(),
-});
 
 describe('AppController', () => {
   let apiController: TreeController;
@@ -31,11 +24,13 @@ describe('AppController', () => {
         label: 'test',
         parent: 1,
       });
-      expect(response).toBe(`Tree: {id:10,label:test}`);
+      expect(response).toContain(`Tree:`);
+      expect(response).toContain(`label:test`);
     });
     it('should a new tree with without a parent', async () => {
       const response = await apiController.postTree({ label: 'test' });
-      expect(response).toBe(`Tree: {id:10,label:test}`);
+      expect(response).toContain(`Tree:`);
+      expect(response).toContain(`label:test`);
     });
   });
 });

@@ -1,7 +1,6 @@
 import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
-import AppController from '../src/app.controller';
 import AppModule from '../src/app.module';
 
 describe('AppController', () => {

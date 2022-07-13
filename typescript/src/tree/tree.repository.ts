@@ -39,7 +39,7 @@ export default class TreeRepository {
           : undefined;
 
       const tree = {
-        id: 10,
+        id: new Date().valueOf(),
         parent: parentTree,
         label: createTreeDto.label,
       } as Tree;

@@ -51,7 +51,8 @@ describe('ApiController', () => {
       label = 'test';
       const res = await exec();
       expect(res.status).toBe(201);
-      expect(res.text).toBe(`Tree: {id:10,label:test}`);
+      expect(res.text).toContain(`Tree:`);
+      expect(res.text).toContain(`label:test`);
     });
 
     it('Should return 201, with parent', async () => {
@@ -59,7 +60,8 @@ describe('ApiController', () => {
       parent = 1;
       const res = await exec();
       expect(res.status).toBe(201);
-      expect(res.text).toBe(`Tree: {id:10,label:test}`);
+      expect(res.text).toContain(`Tree:`);
+      expect(res.text).toContain(`label:test`);
     });
 
     it('Should return 201, wrong parent format', async () => {
