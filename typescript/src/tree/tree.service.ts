@@ -27,10 +27,8 @@ export default class TreeService {
 
   createTree = async (newTree: CreateTreeDto): Promise<string> => {
     if (newTree && newTree.parent) {
-      const parent = await this.getTreeById(newTree.parent);
-      if (!parent) {
-        throw new NotFoundException('Parent not found');
-      }
+      // check if the parent exists
+      await this.getTreeById(newTree.parent);
     }
     const tree = await this.repository.createTree(newTree);
     logger.log(`Created tree with id ${tree.id}`);

@@ -7,7 +7,7 @@ import { initialFakeDb } from './tree/entities/tree.mock';
 async function bootstrap() {
   const logger = new Logger('bootstrap');
 
-  localStorage.setItem('treeFromDb', JSON.stringify(initialFakeDb));
+  localStorage.setItem(process.env.FAKE_DB_NAME, JSON.stringify(initialFakeDb));
 
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());

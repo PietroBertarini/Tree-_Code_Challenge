@@ -9,10 +9,16 @@ import { initialFakeDb } from '../../src/tree/entities/tree.mock';
 describe('ApiController', () => {
   let app: INestApplication;
   beforeEach(() => {
-    localStorage.setItem('treeFromDb', JSON.stringify(initialFakeDb));
+    localStorage.setItem(
+      process.env.FAKE_DB_NAME,
+      JSON.stringify(initialFakeDb),
+    );
   });
   afterEach(async () => {
-    localStorage.setItem('treeFromDb', JSON.stringify(initialFakeDb));
+    localStorage.setItem(
+      process.env.FAKE_DB_NAME,
+      JSON.stringify(initialFakeDb),
+    );
   });
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -30,6 +36,13 @@ describe('ApiController', () => {
       const res = await exec();
       expect(res.status).toBe(200);
       expect(res.text).toStrictEqual(JSON.stringify(expectedResponseTree));
+    });
+
+    it('Should return 200 and empty, if the DB is empty', async () => {
+      localStorage.setItem(process.env.FAKE_DB_NAME, JSON.stringify([]));
+      const res = await exec();
+      expect(res.status).toBe(200);
+      expect(res.text).toStrictEqual(JSON.stringify([]));
     });
   });
 
@@ -70,6 +83,15 @@ describe('ApiController', () => {
       const res = await exec();
       expect(res.status).toBe(400);
       expect(res.body.error).toBe('Bad Request');
+    });
+
+    it('Should return 404, parent not found', async () => {
+      label = 'test';
+      parent = 123;
+      const res = await exec();
+      expect(res.status).toBe(404);
+      expect(res.body.message).toContain('Tree not found');
+      expect(res.body.error).toBe('Not Found');
     });
   });
 
