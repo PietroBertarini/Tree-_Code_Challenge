@@ -31,9 +31,9 @@ describe('ApiController', () => {
       return request(app.getHttpServer()).post('/tree/');
     };
 
-    it('Should return 200 and Hello post', async () => {
+    it('Should return 201 and Hello post', async () => {
       const res = await exec();
-      expect(res.status).toBe(200);
+      expect(res.status).toBe(201);
       expect(res.body).toStrictEqual({});
       expect(res.text).toBe('Hello POST /tree/');
     });
