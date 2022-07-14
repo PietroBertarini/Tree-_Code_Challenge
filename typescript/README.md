@@ -8,6 +8,8 @@ To start your server, run `yarn start`.  Open up your favorite browser and navig
 
 To run tests for the project, run `yarn test`.
 
+To run tests with coverage for the project, run `yarn test:cov`.
+
 To lint the project, run `yarn lint`.
 
 Now follow the steps outlined in [The Problem](https://github.com/hinge-health/interviews-services#the-problem)
