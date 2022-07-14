@@ -11,7 +11,7 @@ export default class TreeRepository {
     return Promise.resolve(foundTree);
   };
 
-  get = (): Promise<Tree[]> => {
+  getAll = (): Promise<Tree[]> => {
     const getTreeFromDb = JSON.parse(
       localStorage.getItem(process.env.FAKE_DB_NAME),
     ) as Tree[];

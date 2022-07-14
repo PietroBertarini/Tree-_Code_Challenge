@@ -7,11 +7,17 @@ import CreateTreeDto from './dto/tree.dto';
 export default class TreeController {
   constructor(private readonly appService: TreeService) {}
 
+  /**
+   * GET all tree from the DB, the tree will be generated from the root (Data without parent).
+   */
   @Get('/tree/')
   getTree(): Promise<ITreeResponseFormat[]> {
-    return this.appService.getTree();
+    return this.appService.getAllTree();
   }
 
+  /**
+   * CREATE a new tree node to the DB
+   */
   @Post('/tree/')
   postTree(@Body() body: CreateTreeDto): Promise<string> {
     return this.appService.createTree(body);

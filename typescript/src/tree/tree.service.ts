@@ -19,8 +19,8 @@ export default class TreeService {
     return getTreeFromDb;
   };
 
-  getTree = async (): Promise<ITreeResponseFormat[]> => {
-    const getTreeFromDb = await this.repository.get();
+  getAllTree = async (): Promise<ITreeResponseFormat[]> => {
+    const getTreeFromDb = await this.repository.getAll();
     const tree = getTreeFormat(getTreeFromDb);
     return getTreeResponseFormat(tree);
   };
