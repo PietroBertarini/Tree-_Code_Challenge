@@ -12,4 +12,4 @@ To run tests with coverage for the project, run `yarn test:cov`.
 
 To lint the project, run `yarn lint`.
 
-Now follow the steps outlined in [The Problem](https://github.com/hinge-health/interviews-services#the-problem)
+Now follow the steps outlined in [The Problem](https://github.com/pietro-bertarini/Tree_Code_Challenge)
